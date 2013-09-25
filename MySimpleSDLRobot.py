@@ -3,6 +3,8 @@
 #sys.path.append('/')
 import sys
 import pdb
+import SDLEngine as sdlengine
+
 
 try:
     import sdl2.ext as sdl2ext
@@ -16,30 +18,27 @@ RESOURCES = Resources(__file__, "resources")
 
 from MySimpleRobot import *
 
-class MySimpleSDLRobot(MySimpleRobot):
-	def __init__(self):
-		pdb.set_trace();
-		sdl2ext.init ()
-		window = sdl2ext.Window("Hello World!", size=(640, 480))
-		window.show()
+class MySimpleSDLRobot(sdlengine.SDLObject):
 
-		factory = sdl2ext.SpriteFactory(sdl2ext.SOFTWARE)
-		sprite = factory.from_image(RESOURCES.get_path("DifferentialDriveRobot.png"))
+		
+	def __init__(self, world, sdlEngine, posx, posy):
+		
+		super.__init__(self, world)
+	pass
 
-		spriterenderer = factory.create_sprite_renderer(window)
-		spriterenderer.render(sprite)
-		processor = sdl2ext.TestEventProcessor()
-		processor.run(window)
-	def paint(self):
-		pass;
-	def update(self):
-		pass;
-	pass;
 
 
 def main():
+	pdb.set_trace() 
+	engine = sdlengine.SDLEngine()
+	r = MySimpleSDLRobot(engine.world, engine, 0 ,0)
+	engine.add(r)
+	sys.exit(engine.run())
 	
-	r = MySimpleSDLRobot();
+
+		
+
+		
 	return 0
 
 #if __name__ == '__main__':
