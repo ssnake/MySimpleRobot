@@ -9,6 +9,7 @@ class MySimpleRobot(object):
 		self._width  = .2
 		self._length = .2
 		self._velocity = 0
+		self.w = 0
 	def get_x(self):
 		return self._x
 	def set_x(self, x):
@@ -38,7 +39,24 @@ class MySimpleRobot(object):
 		return self._velocity
 	def set_velocity(self, velocity):
 		self._velocity = velocity
-	velocity = property(get_velocity, set_velocity)			
+	velocity = property(get_velocity, set_velocity)	
+
+
+	def get_position(self):
+		return self.x, self.y, self.angle
+	def set_position(self, x, y, angle):
+		self.x = x
+		self.y = y
+		self.angle = angle
+	def get_dynamics(self):
+		return self.velocity, self.w 
+	def set_dynamics(self, v, w):
+		self.velocity = v
+		self.w = w
+	def set_outputs(self, outputs):
+		self.velocity = outputs.v
+		self.w = outputs.w
+
 
 
 

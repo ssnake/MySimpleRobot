@@ -3,16 +3,25 @@
 
 from PyGameWorld import *
 from MySimpleAI import *
-
-rob = MySimpleAI(1, 1, 90)
+from MySimpleRobot import *
+import time
 
 def main():
+	rob = MySimpleRobot(1, 1, 90)
+	ai = MySimpleAI()
+	ai.inputs.v = 2
+	ai.inputs.angle_d = 270
+
+
 	world = PyGameWorld()
 	world.add(rob)
-	rob.desired_velocity = 0.01 #1 cm per sec
+	dt = 0
 	while world.run():
-		world.process()
-		rob.process()
+		t = time.clock()
+		ai.process(rob, dt)		
+		world.process(dt)
+		dt = time.clock() - t
+		
 
 	
 

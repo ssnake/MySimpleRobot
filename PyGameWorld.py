@@ -3,6 +3,7 @@
 import World
 import pygame
 import pdb
+import math
 import MySimpleRobot
 from pygame import *
 
@@ -15,19 +16,29 @@ SCALE = 100.0;
 class PyGameRobot(object):
 	def __init__(self, robot):
 		self.robot = robot;
-		self.update()
+		self.update(0)
 		self.picture = Surface((self.width, self.length))
 		self.picture.fill(Color("#FFFFFF"))
-		self.update()
+		
 	def draw(self, screen):
 		
 		screen.blit(self.picture, (self.x, self.y))
-	def update(self):
-		self.x = self.robot.x * SCALE
-		self.y = self.robot.y * SCALE
-		self.angle = self.robot.angle
+	def update(self, dt):
+		x, y, angle = self.robot.get_position()
+		v, w = self.robot.get_dynamics()
+		x = x + v*math.cos(math.radians(angle))*dt
+		y = y - v*math.sin(math.radians(angle))*dt
+		angle = angle + w*dt
+
+
+		self.x = x * SCALE
+		self.y = y * SCALE
+		self.angle = angle
 		self.width = self.robot.width * SCALE
 		self.length = self.robot.length * SCALE
+
+		self.robot.set_position(x,y,angle)
+		self.robot.set_dynamics(v, w)
 		
 
 
@@ -46,9 +57,9 @@ class PyGameWorld(World.World):
  		self.robotList += [PyGameRobot(robot)]
  		
 		 	
- 	def update(self):
+ 	def update(self, dt):
  		for r in self.robotList:
- 			r.update()
+ 			r.update(dt)
  		for e in pygame.event.get():
 			if e.type == QUIT:
 				self.running = False
@@ -61,8 +72,8 @@ class PyGameWorld(World.World):
 			r.draw(self.screen)
 			pass
 		pygame.display.flip()
-	def process(self):
-		self.update()
+	def process(self, dt):
+		self.update(dt)
 		self.draw()
 
 		

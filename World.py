@@ -9,5 +9,5 @@ class World(object):
 		pass;
 	def run(self):
 		return self.running
-	def process(self):
+	def process(self, dt):
 		pass
