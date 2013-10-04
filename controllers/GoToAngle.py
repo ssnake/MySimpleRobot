@@ -15,8 +15,7 @@ class GoToAngle(object):
 		w = self.Kp*e_k
 		outputs.v = v
 		outputs.w = w
-		print('v = ', v)
-		print('w = ', w)
+
 
 
 		

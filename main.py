@@ -11,6 +11,8 @@ def main():
 	ai = MySimpleAI()
 	ai.inputs.v = 2
 	ai.inputs.angle_d = 270
+	ai.inputs.x_d = 10
+	ai.inputs.y_d = 5
 
 
 	world = PyGameWorld()

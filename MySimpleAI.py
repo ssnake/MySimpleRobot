@@ -5,6 +5,7 @@ import sys
 #add controllers folder
 sys.path.append('controllers' )
 import GoToAngle
+import GoToGoal
 
 class Inputs(object):
 	def __init__(self):
@@ -23,7 +24,7 @@ class MySimpleAI(object):
 	def __init__(self):
 		self.inputs = Inputs()
 		self.outputs = Outputs()
-		self.controllers = [GoToAngle.GoToAngle()];
+		self.controllers = [GoToGoal.GoToGoal()];
 		self.current_controller= self.controllers[0]
 	def process(self, robot, dt):
 		if self.current_controller is None:
