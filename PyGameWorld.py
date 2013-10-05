@@ -27,7 +27,7 @@ class PyGameRobot(object):
 		x, y, angle = self.robot.get_position()
 		v, w = self.robot.get_dynamics()
 		x = x + v*math.cos(math.radians(angle))*dt
-		y = y - v*math.sin(math.radians(angle))*dt
+		y = y + v*math.sin(math.radians(angle))*dt
 		angle = angle + w*dt
 
 

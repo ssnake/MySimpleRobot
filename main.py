@@ -6,23 +6,25 @@ from MySimpleAI import *
 from MySimpleRobot import *
 import time
 
+
 def main():
 	rob = MySimpleRobot(1, 1, 90)
 	ai = MySimpleAI()
 	ai.inputs.v = 2
-	ai.inputs.angle_d = 270
-	ai.inputs.x_d = 10
-	ai.inputs.y_d = 5
+	ai.inputs.angle_d = 45
+	ai.inputs.x_d = 2
+	ai.inputs.y_d = 3
 
 
 	world = PyGameWorld()
 	world.add(rob)
-	dt = 0
+	dt = 0.001
 	while world.run():
-		t = time.clock()
+		#t = time.clock()
 		ai.process(rob, dt)		
 		world.process(dt)
-		dt = time.clock() - t
+		time.sleep(dt)
+		#dt = time.clock() - t
 		
 
 	

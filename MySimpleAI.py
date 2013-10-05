@@ -24,7 +24,8 @@ class MySimpleAI(object):
 	def __init__(self):
 		self.inputs = Inputs()
 		self.outputs = Outputs()
-		self.controllers = [GoToGoal.GoToGoal()];
+		#self.controllers = [GoToGoal.GoToGoal()]
+		self.controllers = [GoToAngle.GoToAngle()];
 		self.current_controller= self.controllers[0]
 	def process(self, robot, dt):
 		if self.current_controller is None:
