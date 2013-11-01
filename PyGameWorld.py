@@ -54,7 +54,10 @@ class PyGameWorld(World.World):
 		self.bg = Surface((WIN_WIDTH,WIN_HEIGHT)) 
  		self.bg.fill(Color(BACKGROUND_COLOR))   
  	def add(self, robot):
- 		self.robotList += [PyGameRobot(robot)]
+ 		if isinstance(robot, MySimpleRobot.MySimpleRobot):
+ 			self.robotList += [PyGameRobot(robot)]
+ 		else:
+ 			self.robotList += [robot]
  		
 		 	
  	def update(self, dt):
